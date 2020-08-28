@@ -1,0 +1,30 @@
+#gridContainer {
+    margin: 0 auto 0 auto;
+    width: 600px;
+    height: 600px;
+    border: solid black;
+    display: grid;
+    grid-template-columns: repeat(var(--squares-per-side), 1fr);
+    grid-template-rows: repeat(var(--squares-per-side), 1fr);
+}
+
+.gridCell {
+    height: auto;
+    width: auto;
+}
+
+.gridCellBackground {
+    background-color: green;
+}
+
+#titleBtn {
+    width: 15em;
+    margin: 1em auto 1em auto;
+}
+
+.button {
+    width: 10em;
+    display: block;
+    margin: 0 auto;
+    
+}
