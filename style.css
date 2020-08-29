@@ -1,9 +1,21 @@
 
+body {
+    background-color: #23272A;
+}
+
+#mainContainer {
+    font-family: 'Alata', sans-serif;
+}
+
+button {
+    font-family: inherit;
+}
+
 #gridContainer {
-    margin: 0 auto 0 auto;
+    margin: 5vh auto 0 auto;
+    background-color: #2C2F33;
     width: 600px;
     height: 600px;
-    border: solid black;
     display: grid;
     grid-template-columns: repeat(var(--squares-per-side), 1fr);
     grid-template-rows: repeat(var(--squares-per-side), 1fr);
@@ -19,19 +31,46 @@
     background-color: green;
 }
 
-#titleBtn {
-    width: 15em;
-    margin: 1em auto 1em auto;
-}
 
-.button {
-    width: 10em;
-    display: block;
+.dropDownContainer {
+    width: 20em;
     margin: 0 auto;
-    border: none;
-    background-color: darkgray;
 }
 
-.button:hover {
-    background-color: gray;
+.dropDisplayBtn {
+    display: block;
+    width: 15em;
+    margin: 1em auto;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1em;
+    background-color: #2C2F33;
+    color: #ffffff;
+    padding: 0.2em;
+}
+
+.dropDownContent {
+    display: none;
+    
+}
+
+.dropDownChoice {
+    margin: 0 5px;
+    border: none;
+    cursor: pointer;
+    background-color:#2C2F33;
+    color: #ffffff;
+    outline: none;
+}
+
+.dropDownChoice:hover {
+    background-color: #7289da;
+}
+
+.showDropDown {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 1em;
 }

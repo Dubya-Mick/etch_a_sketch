@@ -1,12 +1,14 @@
 const gridContainer = document.querySelector('#gridContainer');
 const btnContainer = document.querySelector('#titleBtn');
+const dropDownContainer = document.querySelector('#dropDownContainer');
 
-//random number in a range to be used as rgb values
+
+//random number in a range to be used as rgb values for cell colors
 function randomNumber(min, max) {
     return Math.floor(Math.random() * (max - min) + min);
 }
 
-//generates a random color
+//generates a random color for cell background
 function randomRGBColor() { 
     return 'rgb(' + randomNumber(0, 255) + ', ' + randomNumber(0, 255) + ', ' + randomNumber(0, 255) + ')';
 }
@@ -27,25 +29,51 @@ function createGrid(squaresPerSide) {
     gridContainer.appendChild(allTheSquares); //adding the docfragment in one fel swoop to the container of the grid
 };
 
-createGrid(16); //intitally creates a 16x16 grid on load
-
-const resetButton = document.createElement('button');
-resetButton.setAttribute('class', 'button');
-resetButton.textContent = "Start over!";
-
-resetButton.addEventListener('click', () => {
-    let userGrid = prompt("How many squares would you like per side?");
-    if(userGrid == null) { // if the user cancels the prompt
-        alert("Well then keep enjoying yourself!"); 
-    } else if (isNaN(parseInt(userGrid)) || parseInt(userGrid) <= 0 || parseInt(userGrid) > 100) { //if user gives something thats NaN or too big or less than zero
-        alert("Come on and give us something we can work with");
-    } else {
-        while(gridContainer.firstChild){
-            gridContainer.removeChild(gridContainer.firstChild); //while loop deletes all children of parent container
+//function that clears the grid of all cells
+function clearGrid() {
+    while(gridContainer.firstChild){
+        gridContainer.removeChild(gridContainer.firstChild); //while loop deletes all children of parent container
         };
-        createGrid(userGrid);
-    }
-});
-btnContainer.appendChild(resetButton);
+}
+
+//function that toggles the dropdown box
+const dropDownContent = document.createElement('div');
+dropDownContent.setAttribute('class', 'dropDownContent');
+function dropDownToggle() {
+    dropDownContent.classList.toggle('showDropDown');
+}
+
+//creating the dropdown box
+const dropDownDisplay = document.createElement('button');
+dropDownDisplay.setAttribute('class', 'dropDisplayBtn');
+dropDownDisplay.textContent = "How many pixels per side?";
+dropDownDisplay.addEventListener('click', dropDownToggle);
+dropDownContainer.appendChild(dropDownDisplay);
+
+//for loop creates the buttons inside the drop down box and adds functionality: 
+//each button clears the grid, then creates a new grid with the chosen number 
+//of squares per side
+const allTheOptions = document.createDocumentFragment();
+for(let i = 10; i <= 100; i += 10) {
+    let numberOfSquares = document.createElement('button');
+    numberOfSquares.setAttribute('class', 'dropDownChoice');
+    numberOfSquares.value = i;
+    numberOfSquares.textContent = `${i}`;
+    numberOfSquares.addEventListener('click', () => {
+        clearGrid();
+        createGrid(i);
+    });
+    allTheOptions.appendChild(numberOfSquares);
+}
+
+//adding the dropdown box to the DOM
+dropDownContent.appendChild(allTheOptions);
+dropDownContainer.appendChild(dropDownContent);
+
+
+//intitally creates a 10x10 grid on load
+createGrid(10); 
+
+
 
 
