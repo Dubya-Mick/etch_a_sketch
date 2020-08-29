@@ -1,3 +1,4 @@
+
 #gridContainer {
     margin: 0 auto 0 auto;
     width: 600px;
@@ -11,6 +12,7 @@
 .gridCell {
     height: auto;
     width: auto;
+    
 }
 
 .gridCellBackground {
@@ -26,5 +28,10 @@
     width: 10em;
     display: block;
     margin: 0 auto;
-    
+    border: none;
+    background-color: darkgray;
+}
+
+.button:hover {
+    background-color: gray;
 }
